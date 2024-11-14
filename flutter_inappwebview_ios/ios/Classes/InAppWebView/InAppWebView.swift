@@ -82,6 +82,7 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
                                                binaryMessenger: registrar.messenger())
             self.channelDelegate = WebViewChannelDelegate(webView: self, channel: channel)
         }
+
         self.contextMenu = contextMenu
         self.initialUserScripts = userScripts
         uiDelegate = self
@@ -1987,6 +1988,7 @@ public class InAppWebView: WKWebView, UIScrollViewDelegate, WKUIDelegate,
         
         if #available(iOS 14.0, *) {
             configuration.userContentController.resetContentWorlds(windowId: windowId)
+            self.webView?.allowsScribble = true
         }
         
         channelDelegate?.onLoadStart(url: url?.absoluteString)
